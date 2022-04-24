@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"regexp"
-	"juniormayhe.com/pbns-finder/tools"
+
+	crawler "juniormayhe.com/pbns-finder/tools/crawler"
+	text "juniormayhe.com/pbns-finder/tools/text"
 )
 
 func main() {
@@ -15,5 +17,7 @@ func main() {
 	for _, v := range matches {
 		fmt.Println("valor=", v)
 	}
-
+	url := "http://github.com/juniormayhe/pbns-finder/yamls"
+	urls := crawler.Crawl(url)
+	fmt.Println(urls)
 }

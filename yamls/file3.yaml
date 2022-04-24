@@ -1,0 +1,11 @@
+---
+yaml:
+- slim and flexible
+- better for configuration
+business-flow:
+  component1:
+    pbn: commerce-create-order
+  component2:
+    pbn: commerce-globalization-api
+  component3:
+    pbn: commerce-pricing-api

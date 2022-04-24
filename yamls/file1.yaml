@@ -1,0 +1,21 @@
+---
+yaml:
+- slim and flexible
+- better for configuration
+components:
+- name: commerce-infra-test
+- name: something-else
+- name: commerce-catalog-api
+- name: infra-shared-kafka
+paragraph: |
+  Blank lines denote
+  paragraph breaks
+content: |-
+  Or we
+  can auto
+  convert line breaks
+  to save space
+alias:
+  bar: baz
+alias_reuse:
+  bar: baz

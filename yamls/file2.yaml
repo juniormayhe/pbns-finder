@@ -1,0 +1,8 @@
+---
+yaml:
+- slim and flexible
+- better for configuration
+commerce-order-workflow:
+  endpoint: http://ecommerce.com/order-workflow
+commerce-checkout-api:
+  endpoint: http://ecommerce.com/checkout
