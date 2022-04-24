@@ -14,10 +14,11 @@ func main() {
 	var body string
 	var rawContentUrl string
 	var err error
+
+	pbnsByFileName := make(map[string][]string)
 	for _, url := range urls {
 
 		rawContentUrl = crawler.ReplaceGithubBlobWithRawContent(url)
-		//log.Printf("fetching %s\n", rawContentUrl)
 
 		body, err = crawler.GetBodyContent(rawContentUrl)
 		if err != nil {
@@ -25,14 +26,27 @@ func main() {
 			return
 		}
 
-		matches := text.GetPBNs(body)
+		yamlMap := text.GetYamlContent(body)
+		var pbns []string
 
-		//log.Printf("pbns: %d\n", len(matches))
+		for k, v := range yamlMap {
+			pbnsOnKeys := text.GetPBNs(fmt.Sprintf("%s", k))
+			pbnsOnValues := text.GetPBNs(fmt.Sprintf("%s", v))
 
-		fmt.Printf("file: %s\n", text.GetFilename(url))
-		for _, v := range matches {
-			fmt.Println("  valor: ", v)
+			if len(pbnsOnKeys) > 0 {
+				pbns = append(pbns, pbnsOnKeys...)
+			}
+
+			if len(pbnsOnValues) > 0 {
+				pbns = append(pbns, pbnsOnValues...)
+			}
 		}
+
+		pbnsByFileName[text.GetFilename(url)] = pbns
+	}
+
+	for k, v := range pbnsByFileName {
+		fmt.Printf("File %s contains %s\n", k, v)
 	}
 
 }
