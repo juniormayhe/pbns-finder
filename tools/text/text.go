@@ -1,7 +1,17 @@
 package text
 
-import "fmt"
+import (
+	"regexp"
+	"strings"
+)
 
-func PrintHello() {
-	fmt.Println("Hello, Modules! This is text package!")
+func GetPBNs(content string) []string {
+	r := regexp.MustCompile(`[\w]+\-[\w]+\-[\w]*`)
+	matches := r.FindAllString(content, -1)
+	return matches
+}
+
+func GetFilename(url string) string {
+	s := strings.Split(url, "/")
+	return s[len(s)-1]
 }
